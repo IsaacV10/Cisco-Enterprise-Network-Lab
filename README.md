@@ -46,18 +46,18 @@ Switch2  Cisco 2960  Access Switch (VLAN 30, 99)
 PC1      MacBook     End user device - VLAN 10
 PC2      Windows PC  End user device - VLAN 10
 
-# Technology & Protocols
-Routing:
+## Technology & Protocols
+# Routing:
 - OSPF (Open Shortest Path First): dynamic routing between R1 and R2 in Area 0
 - Router-on-a-Stick: inter-VLAN routing using subinterfaces on R1 Fa0/0
 - DHCP: automatic IP assignment for all VLANs with excluded address ranges
-Switching:
+# Switching:
 - VLANs: network segmentation across VLAN 10, 20, 30, 99
 - 802.1Q Trunking: carrying multiple VLANs over single uplink
 - Spanning Tree PortFast: faster port activation on access ports
 - BPDU Guard: STP attack prevention on access ports
 - Port Security: sticky MAC address learning, max 1 MAC per port
-Security:
+# Security:
 - SSH v2: secure remote management (Telnet disabled)
 - Native VLAN 99:  protection against VLAN hopping attacks
 - Service password-encryption: encrypting plain text passwords
