@@ -48,7 +48,7 @@ PC2      Windows PC  End user device - VLAN 10
 
 # Technology & Protocols
 ## Routing:
-- **OSPF (Open Shortest Path First)**: dynamic routing between R1 and R2 in Area 0
+- **OSPF (Open Shortest Path First)** — dynamic routing between R1 and R2 in Area 0
 - **Router-on-a-Stick**: inter-VLAN routing using subinterfaces on R1 Fa0/0
 - **DHCP**: automatic IP assignment for all VLANs with excluded address ranges
 ## Switching:
