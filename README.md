@@ -1,4 +1,4 @@
-# Network HomeLab
+# Enterprise Network Lab - Cisco 1841 Routerr & 2960 switches
 
 # Table of Contents
 - Overview
