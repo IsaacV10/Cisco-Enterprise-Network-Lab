@@ -17,34 +17,40 @@ The goal of this project was to design and implement a small enterprise-style ne
 # Network Topology
 <img width="1052" height="965" alt="image" src="https://github.com/user-attachments/assets/fbd52310-1b43-4a89-9a90-e3c9c0a413b8" />
 
-# VLAN Design
-VLAN    Name        Purpose
-10    VLAN10_Users  End Useres (PC1,PC2)
-20    VLAN20_Users  Reserved for Expansion
-30    VLAN30_Remote Remote Segment (PC3)
-99    Management    Network device management only
+## VLAN Design
 
-# IP Addressing Scheme
-Device    Interface   IP Address    Subnet     Purpose
-R1        Fa0/0.10    192.168.10.1    /24    VLAN 10 Gateway
-R1        Fa0/0.20    192.168.20.1    /24    VLAN 20 Gateway
-R1        Fa0/0.99    192.168.99.1    /24    Management Gateway
-R1        Fa0/1       10.0.0.1        /30    WAN Link
-R2        Fa0/0       192.168.30.1    /24    VLAN 30 Gateway
-R2        Fa0/1       10.0.0.2        /30    WAN Link
-SW1       VLAN 99     192.168.99.2    /24    Management
-Sw2       VLAN 99     192.168.99.3    /24    Management
-PC1       NIC         192.168.10.12   /24    DHCP Assigned
-PC2       NIC         192.168.10.10   /24    DHCP Assigned
+| VLAN | Name           | Purpose                     |
+|-----|----------------|-----------------------------|
+| 10  | VLAN10_Users   | End Users (PC1, PC2)        |
+| 20  | VLAN20_Users   | Reserved for expansion      |
+| 30  | VLAN30_Remote  | Remote segment (PC3)        |
+| 99  | Management     | Network device management   |
 
-# Hardware Used
-Device      Model    Role
-Router1  Cisco 1841  Core Router (Router-on-a-Stick + OSPF + DHCP)
-Router2  Cisco 1841  Remote Router (OSPF)
-Switch1  Cisco 2960  Access/Distribution Switch (VLANs 10, 20, 99)
-Switch2  Cisco 2960  Access Switch (VLAN 30, 99)
-PC1      MacBook     End user device - VLAN 10
-PC2      Windows PC  End user device - VLAN 10
+## IP Addressing Scheme
+
+| Device | Interface | IP Address     | Subnet | Purpose |
+|------|-----------|---------------|-------|--------|
+| R1 | Fa0/0.10 | 192.168.10.1 | /24 | VLAN 10 Gateway |
+| R1 | Fa0/0.20 | 192.168.20.1 | /24 | VLAN 20 Gateway |
+| R1 | Fa0/0.99 | 192.168.99.1 | /24 | Management Gateway |
+| R1 | Fa0/1 | 10.0.0.1 | /30 | WAN Link |
+| R2 | Fa0/0 | 192.168.30.1 | /24 | VLAN 30 Gateway |
+| R2 | Fa0/1 | 10.0.0.2 | /30 | WAN Link |
+| SW1 | VLAN 99 | 192.168.99.2 | /24 | Management |
+| SW2 | VLAN 99 | 192.168.99.3 | /24 | Management |
+| PC1 | NIC | 192.168.10.12 | /24 | DHCP Assigned |
+| PC2 | NIC | 192.168.10.10 | /24 | DHCP Assigned |
+
+## Hardware Used
+
+| Device | Model | Role |
+|------|------|------|
+| Router1 | Cisco 1841 | Core router (Router-on-a-Stick, OSPF, DHCP) |
+| Router2 | Cisco 1841 | Remote router (OSPF) |
+| Switch1 | Cisco 2960 | Access/distribution switch (VLANs 10, 20, 99) |
+| Switch2 | Cisco 2960 | Access switch (VLANs 30, 99) |
+| PC1 | MacBook | End-user device – VLAN 10 |
+| PC2 | Windows PC | End-user device – VLAN 10 |
 
 # Technology & Protocols
 ## Routing:
