@@ -1,0 +1,39 @@
+## Troubleshooting Notes
+
+### Issue 1 — Router in ROMMON Mode
+**Symptom:** Router displayed `rommon>` prompt on boot  
+**Cause:** Configuration register set incorrectly  
+**Fix:** `confreg 0x2102` followed by `reset`  
+**Lesson:** Always verify boot register after password recovery attempts.
+
+---
+
+### Issue 2 — OSPF Neighbors Not Forming
+**Symptom:** `show ip ospf neighbor` returned empty  
+**Cause:** Wildcard mask entered as `0.0.0.0` instead of `0.0.0.3` for a `/30` subnet  
+**Fix:** Removed incorrect network statement with `no network` and re-entered with the correct wildcard mask  
+**Lesson:** Always verify wildcard masks — `/30 = 0.0.0.3`, `/24 = 0.0.0.255`.
+
+---
+
+### Issue 3 — WAN Link Protocol Down
+**Symptom:** `Fa0/1` showing `up/down` between routers  
+**Cause:** Direct router-to-router connection causing duplex/speed negotiation issues  
+**Fix:** Connected both routers through an intermediary switch  
+**Lesson:** Physical layer issues can masquerade as configuration problems.
+
+---
+
+### Issue 4 — DHCP Not Assigning Addresses
+**Symptom:** PCs receiving `169.254.x.x` self-assigned addresses  
+**Cause:** Typo in DHCP pool — network configured as `192.168.19.0` instead of `192.168.10.0`  
+**Fix:** Deleted and recreated pool with the correct network statement  
+**Lesson:** Always verify DHCP pools with `show ip dhcp pool` after configuration.
+
+---
+
+### Issue 5 — PC in Wrong VLAN
+**Symptom:** MAC address table showed PC in **VLAN 1** instead of **VLAN 10**  
+**Cause:** Switch port not properly assigned to VLAN 10  
+**Fix:** `switchport mode access` + `switchport access vlan 10` on the port  
+**Lesson:** Always verify VLAN assignments with `show vlan brief` and `show mac address-table`.
