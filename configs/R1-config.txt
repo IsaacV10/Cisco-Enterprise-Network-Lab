@@ -1,1 +1,71 @@
+# R1 — Core Router
+hostname R1
+no ip domain-lookup
+ip domain-name lab.local
+enable secret cisco123
+service password-encryption
+username admin privilege 15 secret cisco123
 
+crypto key generate rsa modulus 1024
+ip ssh version 2
+ip ssh time-out 60
+ip ssh authentication-retries 3
+
+line console 0
+ login local
+ exec-timeout 5 0
+ logging synchronous
+
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 5 0
+
+interface FastEthernet0/0
+ description Trunk to SW1
+ no shutdown
+
+interface FastEthernet0/0.10
+ description Gateway for VLAN 10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface FastEthernet0/0.20
+ description Gateway for VLAN 20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+interface FastEthernet0/0.99
+ description Management VLAN
+ encapsulation dot1Q 99 native
+ ip address 192.168.99.1 255.255.255.0
+
+interface FastEthernet0/1
+ description WAN Link to R2
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+
+ip dhcp excluded-address 192.168.10.1 192.168.10.9
+ip dhcp excluded-address 192.168.20.1 192.168.20.9
+
+ip dhcp pool VLAN10_POOL
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 8.8.8.8
+ lease 1
+
+ip dhcp pool VLAN20_POOL
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+ dns-server 8.8.8.8
+ lease 1
+
+router ospf 1
+ router-id 1.1.1.1
+ network 10.0.0.0 0.0.0.3 area 0
+ network 192.168.10.0 0.0.0.255 area 0
+ network 192.168.20.0 0.0.0.255 area 0
+ network 192.168.99.0 0.0.0.255 area 0
+ passive-interface FastEthernet0/0.10
+ passive-interface FastEthernet0/0.20
+ passive-interface FastEthernet0/0.99
