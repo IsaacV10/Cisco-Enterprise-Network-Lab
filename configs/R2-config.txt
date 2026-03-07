@@ -1,5 +1,5 @@
 # R2 — Remote Router 
-hostname R2
+hostname R2 
 no ip domain-lookup
 ip domain-name lab.local
 enable secret cisco123
