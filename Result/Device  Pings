@@ -1,0 +1,20 @@
+## Connectivity Test Results
+
+To verify end-to-end connectivity, ping tests were performed from **PC2 (Windows — 192.168.10.10)** to multiple devices across the network.
+
+The tests confirmed successful communication across **VLANs, routing boundaries, and the OSPF WAN link**.  
+Inter-VLAN routing using **Router-on-a-Stick on R1** was verified by reaching the **192.168.30.0/24 network** from the **192.168.10.0/24 segment**.  
+
+OSPF route propagation was also validated. Devices on R1's local network were able to reach **R2’s WAN and LAN interfaces**.
+
+During testing, **Windows Firewall was configured to allow ICMP Echo requests** so PC2 could respond to ping traffic.
+
+### Test Results
+
+| Source | Destination | IP Address | Result |
+|------|------|------|------|
+| PC2 | R1 Gateway | 192.168.10.1 | ✅ Success |
+| PC2 | PC1 (Mac) | 192.168.10.12 | ✅ Success |
+| PC2 | R2 WAN | 10.0.0.2 | ✅ Success |
+| PC2 | R2 LAN | 192.168.30.1 | ✅ Success |
+| PC2 | SW1 Management | 192.168.99.2 | ✅ Success |
