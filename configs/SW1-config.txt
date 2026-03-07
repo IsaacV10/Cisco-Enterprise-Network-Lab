@@ -1,5 +1,5 @@
 # SW1 — Access/Distribution Switch
-hostname SW1
+hostname SW1 
 no ip domain-lookup
 ip domain-name lab.local
 
