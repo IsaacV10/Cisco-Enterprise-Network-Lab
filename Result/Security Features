@@ -1,0 +1,44 @@
+## Security Features
+
+### Native VLAN 99
+
+The native VLAN was moved from the default **VLAN 1** to **VLAN 99**.  
+This helps protect against **VLAN hopping attacks**, especially the **double-tagging exploit**.
+
+In a double-tagging attack, an attacker on VLAN 1 can craft frames with two VLAN tags.  
+The first tag is removed by the switch, allowing the second tag to reach another VLAN.
+
+By placing the native VLAN on **VLAN 99** and not allowing user devices on it, this attack vector is removed.  
+VLAN 99 is used only for **network device management**.
+
+
+
+### SSH Instead of Telnet
+
+**Telnet sends all traffic in plain text**, including usernames and passwords.  
+Anyone capturing packets on the network could read these credentials.
+
+**SSH version 2 encrypts the session** using RSA keys.  
+This prevents attackers from capturing login credentials with packet sniffing tools.
+
+
+### Unused Port Shutdown
+
+All unused switch ports are **administratively shut down** and assigned to **VLAN 99**.
+
+This prevents unauthorized physical access.  
+If someone plugs into an unused port, they are placed on the management VLAN.
+
+Since VLAN 99 has **no DHCP server and no default gateway**, the device cannot access the network.
+
+
+
+### Port Security
+
+**Sticky MAC learning** allows a switch port to learn the first MAC address it sees.  
+That address becomes permanently associated with the port.
+
+If another device connects, the switch detects a violation.  
+The port enters **restrict mode** and logs the event.
+
+This helps prevent unauthorized devices from connecting to the network.
