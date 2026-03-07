@@ -1,0 +1,36 @@
+# SW2 — Access Switch
+hostname SW2
+no ip domain-lookup
+ip domain-name lab.local
+
+vlan 30
+ name VLAN30_Remote
+vlan 99
+ name Management
+
+interface vlan 99
+ ip address 192.168.99.3 255.255.255.0
+ no shutdown
+
+ip default-gateway 192.168.30.1
+
+interface FastEthernet0/1
+ description Uplink to R2
+ switchport mode access
+ switchport access vlan 30
+
+interface FastEthernet0/2
+ description PC3 - VLAN30
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security violation restrict
+ switchport port-security mac-address sticky
+
+interface range FastEthernet0/3 - 24
+ switchport mode access
+ switchport access vlan 99
+ shutdown
