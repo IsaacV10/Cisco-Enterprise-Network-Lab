@@ -9,13 +9,24 @@ OSPF route propagation was also validated. Devices on R1's local network were ab
 
 During testing, **Windows Firewall was configured to allow ICMP Echo requests** so PC2 could respond to ping traffic.
 
-# Test Results
-+--------+---------------+---------------+----------+
-| Source | Destination   | IP Address    | Result   |
-+--------+---------------+---------------+----------+
-| PC2    | R1 Gateway    | 192.168.10.1  | Success  |
-| PC2    | PC1 (Mac)     | 192.168.10.12 | Success  |
-| PC2    | R2 WAN        | 10.0.0.2      | Success  |
-| PC2    | R2 LAN        | 192.168.30.1  | Success  |
-| PC2    | SW1 Mgmt      | 192.168.99.2  | Success  |
-+--------+---------------+---------------+----------+
+# Connectivity Test Results
+
+> **PC2 → R1 Gateway**  
+> IP: 192.168.10.1  
+> Result: ✅ Success
+
+> **PC2 → PC1 (Mac)**  
+> IP: 192.168.10.12  
+> Result: ✅ Success
+
+> **PC2 → R2 WAN**  
+> IP: 10.0.0.2  
+> Result: ✅ Success
+
+> **PC2 → R2 LAN**  
+> IP: 192.168.30.1  
+> Result: ✅ Success
+
+> **PC2 → SW1 Management**  
+> IP: 192.168.99.2  
+> Result: ✅ Success
